@@ -9,73 +9,93 @@ const cncfProjects = [
   { name: 'KubeVirt', status: 'Incubating', url: 'https://kubevirt.io' },
   { name: 'Velero', status: 'Incubating', url: 'https://velero.io' },
   { name: 'kcp', status: 'Sandbox', url: 'https://kcp.io' },
-{ name: 'Metal3', status: 'Sandbox', url: 'https://metal3.io' },
+  { name: 'Metal3', status: 'Sandbox', url: 'https://metal3.io' },
   { name: 'Flatcar', status: 'Sandbox', url: 'https://www.flatcar.org' },
 ];
 
 const ossProjects = [
-  { name: 'OpenMeter', url: 'https://openmeter.io' },
   { name: 'Zitadel', url: 'https://zitadel.com' },
+  { name: 'OpenMeter', url: 'https://openmeter.io' },
   { name: 'Grafana', url: 'https://grafana.com/oss/grafana' },
   { name: 'gVisor', url: 'https://gvisor.dev' },
   { name: 'VictoriaMetrics', url: 'https://victoriametrics.com' },
 ];
 
-const statusColor: Record<string, string> = {
-  Graduated: 'text-green-400',
-  Incubating: 'text-blue-400',
-  Sandbox: 'text-yellow-400',
+const statusDot: Record<string, string> = {
+  Graduated: 'bg-emerald-400',
+  Incubating: 'bg-blue-400',
+  Sandbox: 'bg-amber-400',
 };
+
+const allProjects = [...cncfProjects.map(p => ({ ...p, type: 'cncf' })), ...ossProjects.map(p => ({ ...p, status: 'OSS', type: 'oss' }))];
 ---
 
-<section id="open-source" class="py-20 md:py-28 border-t border-slate-800">
+<section id="open-source" class="relative py-28 md:py-36">
+  <div class="divider-glow absolute top-0 left-0 right-0"></div>
+
   <div class="max-w-6xl mx-auto px-6">
-    <div class="text-center mb-16">
-      <h2 class="text-3xl md:text-4xl font-bold text-white mb-4">
-        Built on CNCF &amp; Open Source
+    <div class="reveal text-center mb-16">
+      <p class="text-sm font-semibold text-cyan-400 tracking-widest uppercase mb-4">Foundation</p>
+      <h2 class="text-4xl md:text-5xl font-black text-white mb-5 tracking-tight">
+        100% Open Source
       </h2>
-      <p class="text-lg text-slate-400 max-w-2xl mx-auto">
-        Every component in the stack is open source with community governance.
-        No BSL, no SSPL, no CLA traps. You own your stack.
+      <p class="text-lg text-slate-400 max-w-xl mx-auto font-light">
+        No BSL, no SSPL, no CLA traps. Every component is community-governed.
       </p>
     </div>
 
-    <!-- CNCF Projects -->
-    <div class="mb-12">
-      <h3 class="text-sm font-semibold text-slate-500 uppercase tracking-wider mb-6 text-center">
-        CNCF Projects
-      </h3>
-      <div class="flex flex-wrap justify-center gap-3">
-        {cncfProjects.map(({ name, status, url }) => (
-          <a href={url} target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-2 px-4 py-2.5 bg-slate-800/60 rounded-lg border border-slate-700/50 hover:border-slate-600 hover:bg-slate-800/80 transition-colors">
-            <span class="text-sm font-medium text-slate-200">{name}</span>
-            <span class={`text-xs font-medium ${statusColor[status]}`}>{status}</span>
+    <!-- Scrolling marquee of projects -->
+    <div class="reveal relative overflow-hidden mb-16">
+      <!-- Fade edges -->
+      <div class="absolute left-0 top-0 bottom-0 w-24 bg-gradient-to-r from-gray-950 to-transparent z-10 pointer-events-none"></div>
+      <div class="absolute right-0 top-0 bottom-0 w-24 bg-gradient-to-l from-gray-950 to-transparent z-10 pointer-events-none"></div>
+
+      <div class="flex gap-4 marquee">
+        {[...allProjects, ...allProjects].map(({ name, url, status }) => (
+          <a
+            href={url}
+            target="_blank"
+            rel="noopener noreferrer"
+            class="flex-shrink-0 inline-flex items-center gap-3 px-5 py-3 rounded-xl glass border border-white/[0.06] hover:border-white/[0.15] transition-all group"
+          >
+            <span class={`w-1.5 h-1.5 rounded-full ${statusDot[status] || 'bg-slate-400'}`}></span>
+            <span class="text-sm font-medium text-slate-300 group-hover:text-white transition-colors whitespace-nowrap">{name}</span>
+            <span class="text-[10px] text-slate-600 font-medium">{status}</span>
           </a>
         ))}
       </div>
     </div>
 
-    <!-- Other OSS Projects -->
-    <div class="mb-12">
-      <h3 class="text-sm font-semibold text-slate-500 uppercase tracking-wider mb-6 text-center">
-        Open Source Ecosystem
-      </h3>
-      <div class="flex flex-wrap justify-center gap-3">
-        {ossProjects.map(({ name, url }) => (
-          <a href={url} target="_blank" rel="noopener noreferrer" class="inline-flex items-center px-4 py-2.5 bg-slate-800/60 rounded-lg border border-slate-700/50 hover:border-slate-600 hover:bg-slate-800/80 transition-colors">
-            <span class="text-sm font-medium text-slate-200">{name}</span>
-          </a>
-        ))}
-      </div>
+    <!-- Stats -->
+    <div class="reveal grid grid-cols-2 md:grid-cols-4 gap-4 max-w-3xl mx-auto mb-16">
+      {[
+        { value: '16+', label: 'Open Source Projects' },
+        { value: '4', label: 'CNCF Graduated' },
+        { value: '4', label: 'CNCF Incubating' },
+        { value: '0', label: 'Proprietary Dependencies' },
+      ].map(({ value, label }) => (
+        <div class="text-center p-5 rounded-2xl bg-white/[0.02] border border-white/[0.04]">
+          <div class="text-3xl md:text-4xl font-black text-white mb-1">{value}</div>
+          <div class="text-xs text-slate-500 font-medium">{label}</div>
+        </div>
+      ))}
     </div>
 
-    <!-- License callout -->
-    <div class="max-w-2xl mx-auto text-center p-6 bg-slate-800/40 rounded-xl border border-slate-700/50">
-      <p class="text-slate-300">
-        All core components are licensed under
-        <span class="text-white font-semibold">Apache 2.0</span> or equivalent OSI-approved licenses.
-        No proprietary dependencies required at any layer.
-      </p>
+    <!-- License badge -->
+    <div class="reveal max-w-lg mx-auto">
+      <div class="border-gradient rounded-2xl">
+        <div class="glass-subtle rounded-2xl p-6 text-center">
+          <div class="inline-flex items-center gap-2 mb-3">
+            <svg class="w-5 h-5 text-emerald-400" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="1.5">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75 11.25 15 15 9.75m-3-7.036A11.959 11.959 0 0 1 3.598 6 11.99 11.99 0 0 0 3 9.749c0 5.592 3.824 10.29 9 11.623 5.176-1.332 9-6.03 9-11.622 0-1.31-.21-2.571-.598-3.751h-.152c-3.196 0-6.1-1.248-8.25-3.285Z"/>
+            </svg>
+            <span class="text-sm font-semibold text-white">Apache 2.0 Licensed</span>
+          </div>
+          <p class="text-sm text-slate-400">
+            Fork it, modify it, sell it. No proprietary dependencies at any layer.
+          </p>
+        </div>
+      </div>
     </div>
   </div>
 </section>

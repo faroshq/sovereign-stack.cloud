@@ -1,54 +1,132 @@
 ---
-const badges = [
-  { label: 'CNCF Ecosystem', color: 'bg-blue-500/20 text-blue-300 border-blue-500/30' },
-  { label: 'Apache 2.0', color: 'bg-green-500/20 text-green-300 border-green-500/30' },
-  { label: 'EU Sovereign', color: 'bg-yellow-500/20 text-yellow-300 border-yellow-500/30' },
-];
 ---
 
-<section class="relative pt-32 pb-20 md:pt-40 md:pb-28 overflow-hidden">
-  <!-- Background gradient -->
-  <div class="absolute inset-0 bg-gradient-to-b from-blue-950/30 via-slate-900/0 to-slate-900/0 pointer-events-none"></div>
-  <div class="absolute top-0 left-1/2 -translate-x-1/2 w-[800px] h-[600px] bg-blue-500/5 rounded-full blur-3xl pointer-events-none"></div>
+<section class="relative min-h-screen flex items-center justify-center overflow-hidden">
+  <!-- Animated background grid -->
+  <div class="absolute inset-0 animated-grid"></div>
 
-  <div class="relative max-w-4xl mx-auto px-6 text-center">
-    <!-- Badges -->
-    <div class="flex flex-wrap justify-center gap-3 mb-8">
-      {badges.map(({ label, color }) => (
-        <span class={`inline-flex items-center px-3 py-1 text-xs font-medium rounded-full border ${color}`}>
-          {label}
-        </span>
-      ))}
+  <!-- Radial glow -->
+  <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[1000px] h-[600px] bg-blue-500/[0.07] rounded-full blur-[120px] pointer-events-none"></div>
+  <div class="absolute top-1/3 left-1/3 w-[400px] h-[400px] bg-cyan-500/[0.05] rounded-full blur-[100px] pointer-events-none"></div>
+
+  <!-- Floating orbs -->
+  <div class="absolute top-[20%] right-[15%] w-2 h-2 bg-blue-400/40 rounded-full float"></div>
+  <div class="absolute top-[60%] left-[10%] w-1.5 h-1.5 bg-cyan-400/30 rounded-full float float-delay-1"></div>
+  <div class="absolute top-[30%] left-[20%] w-1 h-1 bg-indigo-400/40 rounded-full float float-delay-2"></div>
+  <div class="absolute bottom-[25%] right-[25%] w-2.5 h-2.5 bg-blue-400/20 rounded-full float float-delay-3"></div>
+
+  <div class="relative max-w-5xl mx-auto px-6 text-center pt-32 pb-20 md:pt-40 md:pb-28">
+    <!-- Status badge -->
+    <div class="reveal inline-flex items-center gap-2 px-4 py-2 rounded-full glass border border-white/10 mb-10">
+      <span class="relative flex h-2 w-2">
+        <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-400 opacity-75"></span>
+        <span class="relative inline-flex rounded-full h-2 w-2 bg-green-400"></span>
+      </span>
+      <span class="text-xs font-medium text-slate-300 tracking-wide">Open Source &middot; Apache 2.0 &middot; CNCF Ecosystem</span>
     </div>
 
-    <h1 class="text-4xl md:text-6xl lg:text-7xl font-extrabold text-white leading-tight tracking-tight mb-6">
-      The Open Source<br />
-      <span class="bg-gradient-to-r from-blue-400 to-cyan-300 bg-clip-text text-transparent">
-        Sovereign Cloud Stack
-      </span>
+    <!-- Main heading -->
+    <h1 class="reveal reveal-delay-1 text-5xl md:text-7xl lg:text-8xl font-black text-white leading-[0.95] tracking-tight mb-8">
+      Build Your Own<br/>
+      <span class="gradient-text">Cloud</span>
     </h1>
 
-    <p class="text-lg md:text-xl text-slate-300 max-w-2xl mx-auto mb-10 leading-relaxed">
-      A minimal, repeatable blueprint to build your own cloud &mdash; powered by the Kubernetes ecosystem.
-      Take it, deploy it, and run your own cloud. Free of charge, free of licensing fees.
+    <!-- Subtitle -->
+    <p class="reveal reveal-delay-2 text-lg md:text-xl text-slate-400 max-w-2xl mx-auto mb-12 leading-relaxed font-light">
+      A minimal, repeatable blueprint powered by the Kubernetes ecosystem.
+      Take it, deploy it, own it. <span class="text-slate-300 font-normal">Free forever.</span>
     </p>
 
-    <div class="flex flex-col sm:flex-row items-center justify-center gap-4">
+    <!-- CTA buttons -->
+    <div class="reveal reveal-delay-3 flex flex-col sm:flex-row items-center justify-center gap-4">
       <a
         href="#getting-started"
-        class="inline-flex items-center px-8 py-3.5 text-base font-semibold text-white bg-blue-600 hover:bg-blue-500 rounded-lg transition-colors shadow-lg shadow-blue-600/25"
+        class="group relative inline-flex items-center gap-2 px-8 py-4 text-base font-semibold text-white rounded-xl overflow-hidden transition-all hover:scale-[1.02] active:scale-[0.98]"
       >
-        Get Started
+        <div class="absolute inset-0 bg-gradient-to-r from-blue-600 to-cyan-600 transition-opacity"></div>
+        <div class="absolute inset-0 bg-gradient-to-r from-blue-500 to-cyan-500 opacity-0 group-hover:opacity-100 transition-opacity"></div>
+        <div class="absolute inset-0 shadow-lg shadow-blue-600/25"></div>
+        <span class="relative">Get Started</span>
+        <svg class="relative w-4 h-4 transition-transform group-hover:translate-x-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13.5 4.5 21 12m0 0-7.5 7.5M21 12H3"/></svg>
       </a>
       <a
         href="https://github.com/faroshq/neocloud"
         target="_blank"
         rel="noopener noreferrer"
-        class="inline-flex items-center gap-2 px-8 py-3.5 text-base font-semibold text-slate-200 bg-slate-800 hover:bg-slate-700 rounded-lg border border-slate-700 transition-colors"
+        class="group inline-flex items-center gap-2.5 px-8 py-4 text-base font-semibold text-slate-300 hover:text-white rounded-xl border border-white/10 hover:border-white/20 bg-white/[0.03] hover:bg-white/[0.06] transition-all hover:scale-[1.02] active:scale-[0.98]"
       >
         <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg>
-        View on GitHub
+        View Source
       </a>
+    </div>
+
+    <!-- Terminal preview -->
+    <div class="reveal reveal-delay-4 mt-16 md:mt-20 max-w-2xl mx-auto">
+      <div class="border-gradient rounded-2xl overflow-hidden glow-blue">
+        <div class="glass rounded-2xl overflow-hidden">
+          <div class="flex items-center gap-2 px-5 py-3.5 border-b border-white/5">
+            <div class="flex gap-1.5">
+              <span class="w-3 h-3 rounded-full bg-white/10 hover:bg-red-400/60 transition-colors"></span>
+              <span class="w-3 h-3 rounded-full bg-white/10 hover:bg-yellow-400/60 transition-colors"></span>
+              <span class="w-3 h-3 rounded-full bg-white/10 hover:bg-green-400/60 transition-colors"></span>
+            </div>
+            <span class="text-xs text-slate-500 font-mono ml-2">tenant@sovereign-stack</span>
+          </div>
+          <div class="p-5 font-mono text-sm leading-relaxed">
+            <div class="flex items-center gap-2 text-slate-400">
+              <span class="text-blue-400">$</span>
+              <span id="typed-cmd" class="text-slate-300"></span>
+              <span class="cursor-blink text-blue-400">|</span>
+            </div>
+            <div id="typed-output" class="mt-2 text-slate-500 hidden">
+              <div class="text-slate-600">NAME      CORES   MEMORY   STATUS    AGE</div>
+              <div>dev-box   4       16Gi     <span class="text-green-400">Running</span>   3m</div>
+              <div>ml-gpu    8       64Gi     <span class="text-green-400">Running</span>   12m</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Scroll indicator -->
+  <div class="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 text-slate-600">
+    <span class="text-xs tracking-widest uppercase">Scroll</span>
+    <div class="w-5 h-8 rounded-full border border-slate-700 flex items-start justify-center p-1.5">
+      <div class="w-1 h-1.5 bg-slate-500 rounded-full animate-bounce"></div>
     </div>
   </div>
 </section>
+
+<script>
+  // Typing animation
+  const cmd = 'kubectl get virtualmachines';
+  const cmdEl = document.getElementById('typed-cmd');
+  const outputEl = document.getElementById('typed-output');
+
+  let i = 0;
+  function typeChar() {
+    if (!cmdEl) return;
+    if (i < cmd.length) {
+      cmdEl.textContent += cmd[i];
+      i++;
+      setTimeout(typeChar, 60 + Math.random() * 40);
+    } else {
+      setTimeout(() => {
+        outputEl?.classList.remove('hidden');
+      }, 400);
+    }
+  }
+
+  // Start typing when hero is visible
+  const heroObserver = new IntersectionObserver((entries) => {
+    entries.forEach((entry) => {
+      if (entry.isIntersecting) {
+        setTimeout(typeChar, 1200);
+        heroObserver.disconnect();
+      }
+    });
+  });
+  const heroSection = document.querySelector('section');
+  if (heroSection) heroObserver.observe(heroSection);
+</script>

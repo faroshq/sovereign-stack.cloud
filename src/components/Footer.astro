@@ -2,29 +2,27 @@
 const currentYear = new Date().getFullYear();
 ---
 
-<footer class="border-t border-slate-800 bg-slate-950">
-  <div class="max-w-6xl mx-auto px-6 py-12">
+<footer class="relative border-t border-white/[0.04] bg-gray-950/50">
+  <div class="max-w-6xl mx-auto px-6 py-10">
     <div class="flex flex-col md:flex-row items-center justify-between gap-6">
-      <div class="flex items-center gap-4">
-        <span class="text-slate-400 text-sm">
-          &copy; {currentYear} Sovereign Stack Contributors
-        </span>
-        <span class="text-slate-600">|</span>
-        <a href="https://github.com/faroshq/neocloud/blob/main/LICENSE" target="_blank" rel="noopener noreferrer" class="text-slate-400 hover:text-white text-sm transition-colors">
+      <div class="flex items-center gap-4 text-sm text-slate-500">
+        <span>&copy; {currentYear} Sovereign Stack Contributors</span>
+        <span class="text-slate-800">&middot;</span>
+        <a href="https://github.com/faroshq/neocloud/blob/main/LICENSE" target="_blank" rel="noopener noreferrer" class="hover:text-slate-300 transition-colors">
           Apache 2.0
         </a>
       </div>
 
       <div class="flex items-center gap-6">
-        <a href="https://github.com/faroshq/neocloud" target="_blank" rel="noopener noreferrer" class="text-slate-400 hover:text-white text-sm transition-colors">
+        <a href="https://github.com/faroshq/neocloud" target="_blank" rel="noopener noreferrer" class="text-sm text-slate-500 hover:text-white transition-colors">
           GitHub
         </a>
-        <a href="https://github.com/faroshq/neocloud#readme" target="_blank" rel="noopener noreferrer" class="text-slate-400 hover:text-white text-sm transition-colors">
+        <a href="https://github.com/faroshq/neocloud#readme" target="_blank" rel="noopener noreferrer" class="text-sm text-slate-500 hover:text-white transition-colors">
           Docs
         </a>
-        <span class="inline-flex items-center gap-1.5 text-sm text-slate-500">
-          <span>Made in the</span>
-          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 810 540" class="w-5 h-3.5">
+        <span class="inline-flex items-center gap-1.5 text-sm text-slate-600">
+          <span>Made in</span>
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 810 540" class="w-5 h-3.5 opacity-60">
             <rect width="810" height="540" fill="#003399"/>
             <g fill="#FFCC00" transform="translate(405,270)">
               {[...Array(12)].map((_, i) => {

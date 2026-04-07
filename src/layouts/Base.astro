@@ -5,8 +5,8 @@ interface Props {
 }
 
 const {
-  title = 'Sovereign Stack — Open Source Cloud Reference Architecture',
-  description = 'A CNCF-native reference architecture built entirely on open source. From bare metal to multi-tenant cloud — no proprietary components, no vendor lock-in.',
+  title = 'Sovereign Stack — Build Your Own Cloud',
+  description = 'A minimal, repeatable blueprint to build your own cloud. Powered by the Kubernetes ecosystem. Free of charge, free of licensing fees.',
 } = Astro.props;
 ---
 
@@ -26,10 +26,34 @@ const {
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet" />
     <title>{title}</title>
   </head>
   <body class="min-h-screen antialiased">
-    <slot />
+    <!-- Global background effects -->
+    <div class="gradient-mesh"></div>
+    <div class="fixed inset-0 dot-grid pointer-events-none z-0"></div>
+
+    <div class="relative z-10">
+      <slot />
+    </div>
+
+    <!-- Global scroll reveal observer -->
+    <script>
+      const observer = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+              entry.target.classList.add('visible');
+            }
+          });
+        },
+        { threshold: 0.1, rootMargin: '0px 0px -40px 0px' }
+      );
+
+      document.querySelectorAll('.reveal, .stagger-children').forEach((el) => {
+        observer.observe(el);
+      });
+    </script>
   </body>
 </html>
