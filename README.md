@@ -6,7 +6,7 @@ Landing page for the [Sovereign Stack](https://github.com/faroshq/neocloud) — 
 
 A 100% open-source, CNCF-native reference architecture for turning commodity hardware into a multi-tenant cloud platform. Three composable layers:
 
-- **Infrastructure** — Bare metal to Kubernetes (Metal3, Cilium, Rook-Ceph, KubeVirt)
+- **Infrastructure** — Bare metal to Kubernetes (Metal3, Kube-OVN, Rook-Ceph, KubeVirt)
 - **Platform** — Multi-tenant cloud APIs via kcp (Compute, VM, Notebook, GPU, Storage)
 - **Production** — Billing, monitoring, identity (OpenMeter, Zitadel, Prometheus)
 

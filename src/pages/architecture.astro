@@ -39,12 +39,12 @@ const layers = [
         alternatives: 'kubeadm (manual), kOps (cloud-only), Rancher (proprietary). CAPI is the standard for declarative, provider-agnostic cluster management.',
       },
       {
-        name: 'Cilium',
-        url: 'https://cilium.io',
-        badge: 'CNCF Graduated',
+        name: 'Kube-OVN',
+        url: 'https://kubeovn.github.io/docs/',
+        badge: 'CNCF Sandbox',
         role: 'Networking, security & observability',
-        why: 'Cilium provides eBPF-based networking with network policies, transparent encryption, load balancing, and observability — all without iptables overhead. For multi-tenant clouds, Cilium\'s network policies provide strong tenant isolation at L3/L4/L7. Its Hubble UI gives deep visibility into traffic flows without additional tooling.',
-        alternatives: 'Calico (solid but iptables-based), Flannel (too simple for multi-tenant). Cilium\'s eBPF architecture is the most performant and feature-complete.',
+        why: 'Kube-OVN brings mature OVS/OVN networking to Kubernetes with built-in subnet management, VPC multi-tenancy, QoS, ACLs, and distributed gateways. For sovereign clouds, Kube-OVN provides strong tenant isolation through VPC-level network separation, fine-grained subnet controls, and deep integration with traditional networking concepts that infrastructure teams already understand.',
+        alternatives: 'Cilium (eBPF-based, complex for on-prem), Calico (solid but less advanced multi-tenancy), Flannel (too simple for multi-tenant). Kube-OVN provides the richest networking feature set for bare-metal sovereign deployments.',
       },
       {
         name: 'Rook-Ceph',
