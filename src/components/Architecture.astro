@@ -1,13 +1,62 @@
 ---
-import LayerCard from './LayerCard.astro';
-
 const layers = [
   {
+    id: 'production',
+    number: '03',
+    title: 'Production',
+    subtitle: 'Billing, monitoring & day-2 ops',
+    gradient: 'from-indigo-600 to-indigo-500',
+    gradientLight: 'from-indigo-500/20 to-indigo-400/10',
+    border: 'border-indigo-500/40',
+    borderHover: 'hover:border-indigo-400/60',
+    accent: 'text-indigo-300',
+    accentBg: 'bg-indigo-500/20',
+    glow: 'shadow-indigo-500/20',
+    components: [
+      { name: 'OpenMeter', badge: 'Open Source', url: 'https://openmeter.io' },
+      { name: 'Prometheus', badge: 'CNCF Graduated', url: 'https://prometheus.io' },
+      { name: 'Grafana', badge: 'Open Source', url: 'https://grafana.com/oss/grafana' },
+      { name: 'VictoriaMetrics', badge: 'Open Source', url: 'https://victoriametrics.com' },
+      { name: 'Velero', badge: 'CNCF Incubating', url: 'https://velero.io' },
+      { name: 'cert-manager', badge: 'CNCF Incubating', url: 'https://cert-manager.io' },
+    ],
+  },
+  {
+    id: 'platform',
+    number: '02',
+    title: 'Platform',
+    subtitle: 'Multi-tenant cloud APIs via kcp',
+    gradient: 'from-cyan-600 to-cyan-500',
+    gradientLight: 'from-cyan-500/20 to-cyan-400/10',
+    border: 'border-cyan-500/40',
+    borderHover: 'hover:border-cyan-400/60',
+    accent: 'text-cyan-300',
+    accentBg: 'bg-cyan-500/20',
+    glow: 'shadow-cyan-500/20',
+    components: [
+      { name: 'kcp', badge: 'CNCF Sandbox', url: 'https://kcp.io' },
+      { name: 'Cloud Operator', badge: 'Open Source', url: 'https://github.com/faroshq/neocloud' },
+      { name: 'Compute API' },
+      { name: 'VM API' },
+      { name: 'Notebook API' },
+      { name: 'GPU Jobs' },
+      { name: 'Storage API' },
+      { name: 'Network API' },
+      { name: 'Zitadel IAM', badge: 'Open Source', url: 'https://zitadel.com' },
+    ],
+  },
+  {
+    id: 'infrastructure',
     number: '01',
     title: 'Infrastructure',
-    subtitle: 'From bare metal to compute-ready Kubernetes',
-    description: 'Automated bare-metal provisioning, networking, storage, GPU, and VM support on commodity hardware. Everything you need to turn servers into a cloud-ready compute platform.',
-    accentColor: 'bg-blue-500/20 text-blue-300',
+    subtitle: 'Bare metal to compute-ready K8s',
+    gradient: 'from-blue-600 to-blue-500',
+    gradientLight: 'from-blue-500/20 to-blue-400/10',
+    border: 'border-blue-500/40',
+    borderHover: 'hover:border-blue-400/60',
+    accent: 'text-blue-300',
+    accentBg: 'bg-blue-500/20',
+    glow: 'shadow-blue-500/20',
     components: [
       { name: 'Metal3', badge: 'CNCF Sandbox', url: 'https://metal3.io' },
       { name: 'Flatcar Linux', badge: 'CNCF Sandbox', url: 'https://www.flatcar.org' },
@@ -19,41 +68,15 @@ const layers = [
       { name: 'gVisor', badge: 'Open Source', url: 'https://gvisor.dev' },
     ],
   },
-  {
-    number: '02',
-    title: 'Platform',
-    subtitle: 'Multi-tenant cloud APIs via kcp',
-    description: 'Tenants get isolated workspaces with high-level cloud APIs. They create VMs, notebooks, and storage — never seeing pods, nodes, or clusters. The platform controls the abstraction.',
-    accentColor: 'bg-cyan-500/20 text-cyan-300',
-    components: [
-      { name: 'kcp', badge: 'CNCF Sandbox', url: 'https://kcp.io' },
-      { name: 'Cloud Operator', badge: 'Open Source', url: 'https://github.com/faroshq/neocloud' },
-      { name: 'Compute API' },
-      { name: 'VM API' },
-      { name: 'Notebook API' },
-      { name: 'GPU Jobs' },
-      { name: 'Storage API' },
-      { name: 'Network API' },
-      { name: 'Dex OIDC', badge: 'CNCF Sandbox', url: 'https://dexidp.io' },
-    ],
-  },
-  {
-    number: '03',
-    title: 'Production',
-    subtitle: 'Billing, monitoring, and day-2 operations',
-    description: 'Everything needed to run the platform as a production service — usage metering, identity management, observability, backup, and TLS automation.',
-    accentColor: 'bg-indigo-500/20 text-indigo-300',
-    components: [
-      { name: 'OpenMeter', badge: 'Open Source', url: 'https://openmeter.io' },
-      { name: 'Zitadel IAM', badge: 'Open Source', url: 'https://zitadel.com' },
-      { name: 'Prometheus', badge: 'CNCF Graduated', url: 'https://prometheus.io' },
-      { name: 'Grafana', badge: 'Open Source', url: 'https://grafana.com/oss/grafana' },
-      { name: 'VictoriaMetrics', badge: 'Open Source', url: 'https://victoriametrics.com' },
-      { name: 'Velero', badge: 'CNCF Incubating', url: 'https://velero.io' },
-      { name: 'cert-manager', badge: 'CNCF Incubating', url: 'https://cert-manager.io' },
-    ],
-  },
 ];
+
+const badgeColors: Record<string, string> = {
+  'CNCF Graduated': 'text-green-400 bg-green-400/10 border-green-400/20',
+  'CNCF Incubating': 'text-blue-400 bg-blue-400/10 border-blue-400/20',
+  'CNCF Sandbox': 'text-yellow-400 bg-yellow-400/10 border-yellow-400/20',
+  'Open Source': 'text-slate-400 bg-slate-400/10 border-slate-400/20',
+};
+
 ---
 
 <section id="architecture" class="py-20 md:py-28 border-t border-slate-800">
@@ -63,15 +86,250 @@ const layers = [
         Three Layers, One Stack
       </h2>
       <p class="text-lg text-slate-400 max-w-2xl mx-auto">
-        Composable by design. Start with what you need, add the rest when you're ready.
-        Each layer is independently adoptable.
+        Click each layer to explore its components. Start with what you need, add the rest when you're ready.
       </p>
     </div>
 
-    <div class="grid gap-6 md:gap-8">
-      {layers.map((layer) => (
-        <LayerCard {...layer} />
-      ))}
+    <!-- Interactive Stack Diagram -->
+    <div class="grid lg:grid-cols-[1fr_1.2fr] gap-8 lg:gap-12 items-start">
+
+      <!-- Left: Visual Stack -->
+      <div class="relative">
+        <!-- Connecting lines (SVG) -->
+        <svg class="absolute inset-0 w-full h-full pointer-events-none z-0" preserveAspectRatio="none">
+          <defs>
+            <linearGradient id="line-grad" x1="0%" y1="0%" x2="0%" y2="100%">
+              <stop offset="0%" style="stop-color:#818cf8;stop-opacity:0.4" />
+              <stop offset="50%" style="stop-color:#22d3ee;stop-opacity:0.4" />
+              <stop offset="100%" style="stop-color:#3b82f6;stop-opacity:0.4" />
+            </linearGradient>
+          </defs>
+          <line x1="50%" y1="33%" x2="50%" y2="37%" stroke="url(#line-grad)" stroke-width="2" stroke-dasharray="4 4" class="animate-dash" />
+          <line x1="50%" y1="66%" x2="50%" y2="70%" stroke="url(#line-grad)" stroke-width="2" stroke-dasharray="4 4" class="animate-dash" />
+        </svg>
+
+        <div class="relative z-10 space-y-3">
+          {layers.map((layer, i) => (
+            <button
+              data-layer={layer.id}
+              class={`layer-btn group w-full text-left relative overflow-hidden rounded-xl border ${layer.border} ${layer.borderHover} bg-gradient-to-r ${layer.gradientLight} backdrop-blur-sm transition-all duration-300 cursor-pointer`}
+              aria-expanded="false"
+            >
+              <!-- Perspective layer effect -->
+              <div class="absolute inset-0 bg-gradient-to-r opacity-0 group-hover:opacity-100 transition-opacity duration-300" style={`background: linear-gradient(135deg, rgba(255,255,255,0.03) 0%, transparent 50%)`}></div>
+
+              <div class="relative p-5 md:p-6">
+                <div class="flex items-center gap-4">
+                  <div class={`flex-shrink-0 w-12 h-12 rounded-lg bg-gradient-to-br ${layer.gradient} flex items-center justify-center text-white font-bold text-lg shadow-lg ${layer.glow}`}>
+                    {layer.number}
+                  </div>
+                  <div class="flex-1 min-w-0">
+                    <h3 class="text-lg font-bold text-white">{layer.title}</h3>
+                    <p class="text-sm text-slate-400">{layer.subtitle}</p>
+                  </div>
+                  <div class={`flex-shrink-0 ${layer.accent} transition-transform duration-300 layer-chevron`}>
+                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/>
+                    </svg>
+                  </div>
+                </div>
+
+                <!-- Component count badge -->
+                <div class="mt-3 flex items-center gap-2">
+                  <span class={`text-xs font-medium px-2 py-0.5 rounded-full ${layer.accentBg} ${layer.accent}`}>
+                    {layer.components.length} components
+                  </span>
+                  <span class="text-xs text-slate-500">Click to explore</span>
+                </div>
+              </div>
+            </button>
+          ))}
+        </div>
+
+        <!-- Bottom: Hardware indicator -->
+        <div class="mt-3 relative z-10">
+          <div class="flex items-center gap-3 px-5 py-3 rounded-xl bg-slate-800/40 border border-slate-700/30">
+            <svg class="w-5 h-5 text-slate-500 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="1.5">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M5.25 14.25h13.5m-13.5 0a3 3 0 0 1-3-3m3 3a3 3 0 1 0 0 6h13.5a3 3 0 1 0 0-6m-16.5-3a3 3 0 0 1 3-3h13.5a3 3 0 0 1 3 3m-19.5 0a4.5 4.5 0 0 1 .9-2.7L5.737 5.1a3.375 3.375 0 0 1 2.7-1.35h7.126c1.062 0 2.062.5 2.7 1.35l2.587 3.45a4.5 4.5 0 0 1 .9 2.7"/>
+            </svg>
+            <div>
+              <p class="text-xs font-medium text-slate-400">Your Hardware</p>
+              <p class="text-[11px] text-slate-500">Bare metal, VMs, or cloud instances</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Right: Detail Panel -->
+      <div class="relative">
+        {layers.map((layer) => (
+          <div
+            data-detail={layer.id}
+            class="layer-detail hidden"
+          >
+            <div class={`rounded-2xl border ${layer.border} bg-gradient-to-br ${layer.gradientLight} backdrop-blur-sm overflow-hidden`}>
+              <!-- Header -->
+              <div class="p-6 pb-4 border-b border-white/5">
+                <div class="flex items-center gap-3 mb-3">
+                  <div class={`w-10 h-10 rounded-lg bg-gradient-to-br ${layer.gradient} flex items-center justify-center text-white font-bold shadow-lg ${layer.glow}`}>
+                    {layer.number}
+                  </div>
+                  <div>
+                    <h3 class="text-xl font-bold text-white">{layer.title}</h3>
+                    <p class="text-sm text-slate-400">{layer.subtitle}</p>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Components grid -->
+              <div class="p-6">
+                <div class="grid grid-cols-2 gap-2.5">
+                  {layer.components.map(({ name, badge, url }) => {
+                    const content = (
+                      <div class="flex flex-col gap-1.5">
+                        <span class="text-sm font-medium text-slate-200">{name}</span>
+                        {badge && (
+                          <span class={`text-[10px] font-medium px-1.5 py-0.5 rounded border w-fit ${badgeColors[badge] || ''}`}>
+                            {badge}
+                          </span>
+                        )}
+                      </div>
+                    );
+                    return url ? (
+                      <a
+                        href={url}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        class="group/comp p-3 rounded-lg bg-slate-900/40 border border-slate-700/30 hover:border-slate-600/50 hover:bg-slate-900/60 transition-all duration-200"
+                      >
+                        <div class="flex items-start justify-between">
+                          {content}
+                          <svg class="w-3.5 h-3.5 text-slate-600 group-hover/comp:text-slate-400 transition-colors mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.5 19.5l15-15m0 0H8.25m11.25 0v11.25"/>
+                          </svg>
+                        </div>
+                      </a>
+                    ) : (
+                      <div class="p-3 rounded-lg bg-slate-900/40 border border-slate-700/30">
+                        {content}
+                      </div>
+                    );
+                  })}
+                </div>
+              </div>
+            </div>
+          </div>
+        ))}
+
+        <!-- Default state: no layer selected -->
+        <div id="detail-placeholder" class="flex items-center justify-center min-h-[300px] rounded-2xl border border-dashed border-slate-700/50 bg-slate-800/20">
+          <div class="text-center px-6">
+            <svg class="w-12 h-12 mx-auto text-slate-600 mb-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="1">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M6.429 9.75 2.25 12l4.179 2.25m0-4.5 5.571 3 5.571-3m-11.142 0L2.25 7.5 12 2.25l9.75 5.25-4.179 2.25m0 0L21.75 12l-4.179 2.25m0 0L21.75 16.5 12 21.75 2.25 16.5l4.179-2.25m0 0 5.571 3 5.571-3"/>
+            </svg>
+            <p class="text-slate-500 text-sm">Select a layer to explore its components</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Tenant perspective -->
+    <div class="mt-16 max-w-3xl mx-auto">
+      <div class="rounded-2xl border border-slate-700/40 bg-slate-800/30 overflow-hidden">
+        <div class="px-6 py-4 bg-slate-800/50 border-b border-slate-700/30 flex items-center gap-3">
+          <div class="flex gap-1.5">
+            <span class="w-3 h-3 rounded-full bg-red-500/60"></span>
+            <span class="w-3 h-3 rounded-full bg-yellow-500/60"></span>
+            <span class="w-3 h-3 rounded-full bg-green-500/60"></span>
+          </div>
+          <span class="text-xs text-slate-500 font-mono">What tenants see — no pods, no nodes, no clusters</span>
+        </div>
+        <pre class="p-5 text-sm overflow-x-auto font-mono leading-relaxed"><code class="text-slate-300"><span class="text-slate-500">$</span> <span class="text-blue-400">kubectl</span> get computes
+<span class="text-slate-500">NAME     STATUS   URL                                    AGE</span>
+my-app   <span class="text-green-400">Ready</span>    https://my-app.jane.cloud.example.com   1m
+
+<span class="text-slate-500">$</span> <span class="text-blue-400">kubectl</span> get virtualmachines
+<span class="text-slate-500">NAME      CORES   MEMORY   STATUS    SSH                    AGE</span>
+dev-box   4       16Gi     <span class="text-green-400">Running</span>   ssh://dev-box:22       3m
+
+<span class="text-slate-500">$</span> <span class="text-blue-400">kubectl</span> get notebooks
+<span class="text-slate-500">NAME        GPU     STATUS    URL                                      AGE</span>
+ml-work     A100    <span class="text-green-400">Running</span>   https://nb.jane.cloud.example.com        5m</code></pre>
+      </div>
     </div>
   </div>
 </section>
+
+<style>
+  .layer-btn[aria-expanded="true"] .layer-chevron {
+    transform: rotate(90deg);
+  }
+
+  .layer-btn[aria-expanded="true"] {
+    box-shadow: 0 0 30px -5px rgba(59, 130, 246, 0.15);
+  }
+
+  .layer-detail {
+    animation: fadeSlideIn 0.3s ease-out;
+  }
+
+  @keyframes fadeSlideIn {
+    from {
+      opacity: 0;
+      transform: translateY(8px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  @keyframes dash {
+    to {
+      stroke-dashoffset: -16;
+    }
+  }
+
+  .animate-dash {
+    animation: dash 1s linear infinite;
+  }
+
+</style>
+
+<script>
+  const buttons = document.querySelectorAll<HTMLButtonElement>('.layer-btn');
+  const details = document.querySelectorAll<HTMLElement>('.layer-detail');
+  const placeholder = document.getElementById('detail-placeholder');
+
+  buttons.forEach((btn) => {
+    btn.addEventListener('click', () => {
+      const layerId = btn.dataset.layer;
+      const isExpanded = btn.getAttribute('aria-expanded') === 'true';
+
+      // Reset all
+      buttons.forEach((b) => b.setAttribute('aria-expanded', 'false'));
+      details.forEach((d) => d.classList.add('hidden'));
+
+      if (isExpanded) {
+        // Collapse: show placeholder
+        placeholder?.classList.remove('hidden');
+      } else {
+        // Expand: show detail
+        btn.setAttribute('aria-expanded', 'true');
+        placeholder?.classList.add('hidden');
+        const detail = document.querySelector(`[data-detail="${layerId}"]`);
+        if (detail) {
+          detail.classList.remove('hidden');
+        }
+      }
+    });
+  });
+
+  // Auto-select first layer on desktop
+  if (window.innerWidth >= 1024) {
+    const firstBtn = buttons[0];
+    if (firstBtn) {
+      firstBtn.click();
+    }
+  }
+</script>
