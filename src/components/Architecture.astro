@@ -1,0 +1,77 @@
+---
+import LayerCard from './LayerCard.astro';
+
+const layers = [
+  {
+    number: '01',
+    title: 'Infrastructure',
+    subtitle: 'From bare metal to compute-ready Kubernetes',
+    description: 'Automated bare-metal provisioning, networking, storage, GPU, and VM support on commodity hardware. Everything you need to turn servers into a cloud-ready compute platform.',
+    accentColor: 'bg-blue-500/20 text-blue-300',
+    components: [
+      { name: 'Metal3', badge: 'CNCF Sandbox', url: 'https://metal3.io' },
+      { name: 'Flatcar Linux', badge: 'CNCF Sandbox', url: 'https://www.flatcar.org' },
+      { name: 'Cluster API', badge: 'CNCF Incubating', url: 'https://cluster-api.sigs.k8s.io' },
+      { name: 'Cilium', badge: 'CNCF Graduated', url: 'https://cilium.io' },
+      { name: 'Rook-Ceph', badge: 'CNCF Graduated', url: 'https://rook.io' },
+      { name: 'KubeVirt', badge: 'CNCF Incubating', url: 'https://kubevirt.io' },
+      { name: 'NVIDIA GPU Operator', badge: 'Open Source', url: 'https://github.com/NVIDIA/gpu-operator' },
+      { name: 'gVisor', badge: 'Open Source', url: 'https://gvisor.dev' },
+    ],
+  },
+  {
+    number: '02',
+    title: 'Platform',
+    subtitle: 'Multi-tenant cloud APIs via kcp',
+    description: 'Tenants get isolated workspaces with high-level cloud APIs. They create VMs, notebooks, and storage — never seeing pods, nodes, or clusters. The platform controls the abstraction.',
+    accentColor: 'bg-cyan-500/20 text-cyan-300',
+    components: [
+      { name: 'kcp', badge: 'CNCF Sandbox', url: 'https://kcp.io' },
+      { name: 'Cloud Operator', badge: 'Open Source', url: 'https://github.com/faroshq/neocloud' },
+      { name: 'Compute API' },
+      { name: 'VM API' },
+      { name: 'Notebook API' },
+      { name: 'GPU Jobs' },
+      { name: 'Storage API' },
+      { name: 'Network API' },
+      { name: 'Dex OIDC', badge: 'CNCF Sandbox', url: 'https://dexidp.io' },
+    ],
+  },
+  {
+    number: '03',
+    title: 'Production',
+    subtitle: 'Billing, monitoring, and day-2 operations',
+    description: 'Everything needed to run the platform as a production service — usage metering, identity management, observability, backup, and TLS automation.',
+    accentColor: 'bg-indigo-500/20 text-indigo-300',
+    components: [
+      { name: 'OpenMeter', badge: 'Open Source', url: 'https://openmeter.io' },
+      { name: 'Zitadel IAM', badge: 'Open Source', url: 'https://zitadel.com' },
+      { name: 'Prometheus', badge: 'CNCF Graduated', url: 'https://prometheus.io' },
+      { name: 'Grafana', badge: 'Open Source', url: 'https://grafana.com/oss/grafana' },
+      { name: 'VictoriaMetrics', badge: 'Open Source', url: 'https://victoriametrics.com' },
+      { name: 'Velero', badge: 'CNCF Incubating', url: 'https://velero.io' },
+      { name: 'cert-manager', badge: 'CNCF Incubating', url: 'https://cert-manager.io' },
+    ],
+  },
+];
+---
+
+<section id="architecture" class="py-20 md:py-28 border-t border-slate-800">
+  <div class="max-w-6xl mx-auto px-6">
+    <div class="text-center mb-16">
+      <h2 class="text-3xl md:text-4xl font-bold text-white mb-4">
+        Three Layers, One Stack
+      </h2>
+      <p class="text-lg text-slate-400 max-w-2xl mx-auto">
+        Composable by design. Start with what you need, add the rest when you're ready.
+        Each layer is independently adoptable.
+      </p>
+    </div>
+
+    <div class="grid gap-6 md:gap-8">
+      {layers.map((layer) => (
+        <LayerCard {...layer} />
+      ))}
+    </div>
+  </div>
+</section>

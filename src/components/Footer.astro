@@ -1,0 +1,48 @@
+---
+const currentYear = new Date().getFullYear();
+---
+
+<footer class="border-t border-slate-800 bg-slate-950">
+  <div class="max-w-6xl mx-auto px-6 py-12">
+    <div class="flex flex-col md:flex-row items-center justify-between gap-6">
+      <div class="flex items-center gap-4">
+        <span class="text-slate-400 text-sm">
+          &copy; {currentYear} Sovereign Stack Contributors
+        </span>
+        <span class="text-slate-600">|</span>
+        <a href="https://github.com/faroshq/neocloud/blob/main/LICENSE" target="_blank" rel="noopener noreferrer" class="text-slate-400 hover:text-white text-sm transition-colors">
+          Apache 2.0
+        </a>
+      </div>
+
+      <div class="flex items-center gap-6">
+        <a href="https://github.com/faroshq/neocloud" target="_blank" rel="noopener noreferrer" class="text-slate-400 hover:text-white text-sm transition-colors">
+          GitHub
+        </a>
+        <a href="https://github.com/faroshq/neocloud#readme" target="_blank" rel="noopener noreferrer" class="text-slate-400 hover:text-white text-sm transition-colors">
+          Docs
+        </a>
+        <span class="inline-flex items-center gap-1.5 text-sm text-slate-500">
+          <span>Made in the</span>
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 810 540" class="w-5 h-3.5">
+            <rect width="810" height="540" fill="#003399"/>
+            <g fill="#FFCC00" transform="translate(405,270)">
+              {[...Array(12)].map((_, i) => {
+                const angle = (i * 30 - 90) * Math.PI / 180;
+                const cx = 160 * Math.cos(angle);
+                const cy = 160 * Math.sin(angle);
+                return (
+                  <polygon
+                    points="0,-15 4,-5 15,-5 6,2 9,13 0,7 -9,13 -6,2 -15,-5 -4,-5"
+                    transform={`translate(${cx},${cy})`}
+                  />
+                );
+              })}
+            </g>
+          </svg>
+          <span>EU</span>
+        </span>
+      </div>
+    </div>
+  </div>
+</footer>

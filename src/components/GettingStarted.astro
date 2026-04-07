@@ -1,0 +1,67 @@
+---
+const steps = [
+  'Get 3 Linux servers (bare metal, VMs, or cloud instances)',
+  'Install Kubernetes via kubeadm or k3s',
+  'Deploy Cilium for networking and tenant isolation',
+  'Install kcp as the multi-tenant control plane',
+  'Deploy the cloud operator',
+  'Create your first tenant workspace',
+  'Apply a Compute resource and see it running',
+];
+---
+
+<section id="getting-started" class="py-20 md:py-28 border-t border-slate-800">
+  <div class="max-w-4xl mx-auto px-6">
+    <div class="text-center mb-16">
+      <h2 class="text-3xl md:text-4xl font-bold text-white mb-4">
+        Get Started in 2 Hours
+      </h2>
+      <p class="text-lg text-slate-400">
+        From zero to a working multi-tenant cloud platform.
+      </p>
+    </div>
+
+    <!-- Steps -->
+    <div class="relative mb-12">
+      <!-- Vertical line -->
+      <div class="absolute left-5 top-0 bottom-0 w-px bg-slate-700 hidden md:block"></div>
+
+      <div class="space-y-4">
+        {steps.map((step, i) => (
+          <div class="flex items-start gap-4 md:gap-6">
+            <div class="flex-shrink-0 w-10 h-10 rounded-full bg-slate-800 border border-slate-700 flex items-center justify-center text-sm font-bold text-blue-400 relative z-10">
+              {i + 1}
+            </div>
+            <p class="text-slate-300 pt-2">{step}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+
+    <!-- Code snippet -->
+    <div class="bg-slate-950 rounded-xl border border-slate-800 overflow-hidden">
+      <div class="flex items-center gap-2 px-4 py-3 bg-slate-900/50 border-b border-slate-800">
+        <span class="text-xs text-slate-500">What tenants see:</span>
+      </div>
+      <pre class="p-4 text-sm overflow-x-auto"><code class="text-slate-300"><span class="text-slate-500">$</span> <span class="text-blue-400">kubectl</span> get computes
+<span class="text-slate-500">NAME     STATUS   URL                                    AGE</span>
+my-app   Ready    https://my-app.jane.cloud.example.com   1m
+
+<span class="text-slate-500">$</span> <span class="text-blue-400">kubectl</span> get virtualmachines
+<span class="text-slate-500">NAME      CORES   MEMORY   STATUS    SSH                    AGE</span>
+dev-box   4       16Gi     Running   ssh://dev-box:22       3m</code></pre>
+    </div>
+
+    <div class="text-center mt-10">
+      <a
+        href="https://github.com/faroshq/neocloud/blob/main/demo.md"
+        target="_blank"
+        rel="noopener noreferrer"
+        class="inline-flex items-center gap-2 px-6 py-3 text-sm font-semibold text-white bg-blue-600 hover:bg-blue-500 rounded-lg transition-colors"
+      >
+        Read the Full Guide
+        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13.5 4.5 21 12m0 0-7.5 7.5M21 12H3"/></svg>
+      </a>
+    </div>
+  </div>
+</section>

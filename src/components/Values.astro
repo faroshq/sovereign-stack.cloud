@@ -1,0 +1,44 @@
+---
+const values = [
+  {
+    icon: `<svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M17.25 6.75 22.5 12l-5.25 5.25m-10.5 0L1.5 12l5.25-5.25m7.5-3-4.5 16.5"/></svg>`,
+    title: '100% Open Source',
+    description: 'Every layer, every component. No proprietary dependencies. Fork it, modify it, own it. All Apache 2.0 or OSI-approved licenses.',
+  },
+  {
+    icon: `<svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M20.25 6.375c0 2.278-3.694 4.125-8.25 4.125S3.75 8.653 3.75 6.375m16.5 0c0-2.278-3.694-4.125-8.25-4.125S3.75 4.097 3.75 6.375m16.5 0v11.25c0 2.278-3.694 4.125-8.25 4.125s-8.25-1.847-8.25-4.125V6.375m16.5 0v3.75m-16.5-3.75v3.75m16.5 0v3.75C20.25 16.153 16.556 18 12 18s-8.25-1.847-8.25-4.125v-3.75m16.5 0c0 2.278-3.694 4.125-8.25 4.125s-8.25-1.847-8.25-4.125"/></svg>`,
+    title: 'CNCF-Native',
+    description: 'Built on the same graduated and incubating projects that power production Kubernetes at scale. Battle-tested, community-governed.',
+  },
+  {
+    icon: `<svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75 11.25 15 15 9.75m-3-7.036A11.959 11.959 0 0 1 3.598 6 11.99 11.99 0 0 0 3 9.749c0 5.592 3.824 10.29 9 11.623 5.176-1.332 9-6.03 9-11.622 0-1.31-.21-2.571-.598-3.751h-.152c-3.196 0-6.1-1.248-8.25-3.285Z"/></svg>`,
+    title: 'EU Digital Sovereignty',
+    description: 'Run on your hardware, in your jurisdiction. No US hyperscaler dependency. Full control over your data and infrastructure.',
+  },
+  {
+    icon: `<svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M6.429 9.75 2.25 12l4.179 2.25m0-4.5 5.571 3 5.571-3m-11.142 0L2.25 7.5 12 2.25l9.75 5.25-4.179 2.25m0 0L21.75 12l-4.179 2.25m0 0L21.75 16.5 12 21.75 2.25 16.5l4.179-2.25m0 0 5.571 3 5.571-3"/></svg>`,
+    title: 'Composable Architecture',
+    description: 'Start with 5 core components, add the rest when ready. Each layer is independently adoptable. No all-or-nothing decisions.',
+  },
+];
+---
+
+<section id="values" class="py-20 md:py-28 border-t border-slate-800">
+  <div class="max-w-6xl mx-auto px-6">
+    <div class="text-center mb-16">
+      <h2 class="text-3xl md:text-4xl font-bold text-white mb-4">
+        Why Sovereign Stack?
+      </h2>
+    </div>
+
+    <div class="grid md:grid-cols-2 gap-6 md:gap-8">
+      {values.map(({ icon, title, description }) => (
+        <div class="p-6 md:p-8 bg-slate-800/30 rounded-2xl border border-slate-700/50">
+          <div class="text-blue-400 mb-4" set:html={icon} />
+          <h3 class="text-xl font-bold text-white mb-2">{title}</h3>
+          <p class="text-slate-400 leading-relaxed">{description}</p>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>

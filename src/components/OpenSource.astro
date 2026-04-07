@@ -1,0 +1,82 @@
+---
+const cncfProjects = [
+  { name: 'Kubernetes', status: 'Graduated', url: 'https://kubernetes.io' },
+  { name: 'Cilium', status: 'Graduated', url: 'https://cilium.io' },
+  { name: 'Prometheus', status: 'Graduated', url: 'https://prometheus.io' },
+  { name: 'Rook', status: 'Graduated', url: 'https://rook.io' },
+  { name: 'cert-manager', status: 'Incubating', url: 'https://cert-manager.io' },
+  { name: 'Cluster API', status: 'Incubating', url: 'https://cluster-api.sigs.k8s.io' },
+  { name: 'KubeVirt', status: 'Incubating', url: 'https://kubevirt.io' },
+  { name: 'Velero', status: 'Incubating', url: 'https://velero.io' },
+  { name: 'kcp', status: 'Sandbox', url: 'https://kcp.io' },
+  { name: 'Dex', status: 'Sandbox', url: 'https://dexidp.io' },
+  { name: 'Metal3', status: 'Sandbox', url: 'https://metal3.io' },
+  { name: 'Flatcar', status: 'Sandbox', url: 'https://www.flatcar.org' },
+];
+
+const ossProjects = [
+  { name: 'OpenMeter', url: 'https://openmeter.io' },
+  { name: 'Zitadel', url: 'https://zitadel.com' },
+  { name: 'Grafana', url: 'https://grafana.com/oss/grafana' },
+  { name: 'gVisor', url: 'https://gvisor.dev' },
+  { name: 'VictoriaMetrics', url: 'https://victoriametrics.com' },
+];
+
+const statusColor: Record<string, string> = {
+  Graduated: 'text-green-400',
+  Incubating: 'text-blue-400',
+  Sandbox: 'text-yellow-400',
+};
+---
+
+<section id="open-source" class="py-20 md:py-28 border-t border-slate-800">
+  <div class="max-w-6xl mx-auto px-6">
+    <div class="text-center mb-16">
+      <h2 class="text-3xl md:text-4xl font-bold text-white mb-4">
+        Built on CNCF &amp; Open Source
+      </h2>
+      <p class="text-lg text-slate-400 max-w-2xl mx-auto">
+        Every component in the stack is open source with community governance.
+        No BSL, no SSPL, no CLA traps. You own your stack.
+      </p>
+    </div>
+
+    <!-- CNCF Projects -->
+    <div class="mb-12">
+      <h3 class="text-sm font-semibold text-slate-500 uppercase tracking-wider mb-6 text-center">
+        CNCF Projects
+      </h3>
+      <div class="flex flex-wrap justify-center gap-3">
+        {cncfProjects.map(({ name, status, url }) => (
+          <a href={url} target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-2 px-4 py-2.5 bg-slate-800/60 rounded-lg border border-slate-700/50 hover:border-slate-600 hover:bg-slate-800/80 transition-colors">
+            <span class="text-sm font-medium text-slate-200">{name}</span>
+            <span class={`text-xs font-medium ${statusColor[status]}`}>{status}</span>
+          </a>
+        ))}
+      </div>
+    </div>
+
+    <!-- Other OSS Projects -->
+    <div class="mb-12">
+      <h3 class="text-sm font-semibold text-slate-500 uppercase tracking-wider mb-6 text-center">
+        Open Source Ecosystem
+      </h3>
+      <div class="flex flex-wrap justify-center gap-3">
+        {ossProjects.map(({ name, url }) => (
+          <a href={url} target="_blank" rel="noopener noreferrer" class="inline-flex items-center px-4 py-2.5 bg-slate-800/60 rounded-lg border border-slate-700/50 hover:border-slate-600 hover:bg-slate-800/80 transition-colors">
+            <span class="text-sm font-medium text-slate-200">{name}</span>
+          </a>
+        ))}
+      </div>
+    </div>
+
+    <!-- License callout -->
+    <div class="max-w-2xl mx-auto text-center p-6 bg-slate-800/40 rounded-xl border border-slate-700/50">
+      <p class="text-slate-300">
+        All core components are licensed under
+        <span class="text-white font-semibold">Apache 2.0</span> or equivalent OSI-approved licenses.
+        No proprietary dependencies required at any layer.
+      </p>
+    </div>
+  </div>
+</section>
