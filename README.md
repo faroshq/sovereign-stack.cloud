@@ -29,7 +29,6 @@ npm run dev        # http://localhost:4321
 npm run build      # Output in ./dist
 ```
 
-
 ## Deployment
 
 Deployed to [Cloudflare Pages](https://pages.cloudflare.com/) on push to `main`.
